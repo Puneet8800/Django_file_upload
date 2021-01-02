@@ -25,3 +25,7 @@ Functionality :
 4. Whitlisted the file extension, can see the list in validators.py
 5. For security measures, There is a rate limit on upload and delete functionality.
 6. Backend database used: Sqlite.
+
+
+Sample Image:
+![alt text](https://github.com/Puneet8800/Django_file_upload/blob/master/example.png?raw=true)
