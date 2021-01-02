@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% block content_header %}
+    <h2>Document</h2>
+    <p>
+      <a href="{% url 'upload_document' %}" class="btn btn-primary">Upload Document</a>
+    </p>
+  {% endblock %}
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Creation Time</th>
+        <th>Document Size</th>
+        <th>Download</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in uploads %}
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>{{ i.description }}</td>
+          <td>{{i.date_posted}}</td>
+          <td>{{i.pdf.size|filesizeformat}}</td>
+          <td>
+            <a href="{{ i.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+              Download PDF
+            </a>
+          </td>
+          <td>
+            <form method="post" action="{% url 'delete_document' upload.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
